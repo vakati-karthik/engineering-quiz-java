@@ -1,2 +1,6 @@
 .DS_STORE
 .idea
+./minesweeper/.idea
+./ticketer/.idea
+./requestbin/.idea
+./requestbin/build
