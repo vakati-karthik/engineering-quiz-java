@@ -1,7 +1,6 @@
 package com.revinate.requestbin.bin.model;
 
 import org.apache.commons.lang3.NotImplementedException;
-
 import java.util.List;
 
 /**

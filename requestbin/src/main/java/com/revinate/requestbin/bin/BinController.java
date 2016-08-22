@@ -1,12 +1,10 @@
 package com.revinate.requestbin.bin;
 
-
 import com.revinate.requestbin.bin.model.Bin;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController

@@ -32,7 +32,6 @@ public class RequestbinApplication {
 		SpringApplication.run(RequestbinApplication.class, args);
 	}
 
-
     @Bean
     @Primary
     public ObjectMapper mapper() {
