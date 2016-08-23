@@ -19,4 +19,4 @@ classic game.
 3. requestbin: set up a simple mock-server to provide web responses.
 4. instagram: create a minimal version of instagram
 
-If you are enjoying them, feel free to complete all three! 
+If you are enjoying them, feel free to complete all of them! 
