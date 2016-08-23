@@ -13,9 +13,13 @@ public class InstagramTest {
     public void getMediaFeed() throws Exception {
         Instagram instagram = new Instagram();
         instagram.postMedia(1,1025);
+        Thread.sleep(1);
         instagram.postMedia(2,1135);
+        Thread.sleep(1);
         instagram.postMedia(3,1092);
+        Thread.sleep(1);
         instagram.postMedia(3,3094);
+        Thread.sleep(1);
         instagram.postMedia(1,1022);
 
         instagram.follow(1, 2);
