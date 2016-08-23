@@ -3,12 +3,21 @@ package com.revinate.requestbin.bin.model;
 
 import org.apache.commons.lang3.NotImplementedException;
 
-import java.util.List;
 import java.util.Map;
 
 
 /**
- * Skeleton class that exposes some basic information that we want to store about Request.
+ * Skeleton class that exposes some basic information that we want to store about a Request.
+ * {
+ *     "method": "POST",
+ *     "body": "Hello World",
+ *     "headers": {
+ *         "Content-Type": ["application/json"]
+ *     }
+ * }
+ *
+ *
+ * Add whatever you feel is missing.
  */
 public class Request {
 
@@ -16,7 +25,7 @@ public class Request {
         throw new NotImplementedException("To be implemented");
     }
 
-    public Map<String, List<String>> getHeaders() {
+    public Map<String, String> getHeaders() {
         throw new NotImplementedException("To be implemented");
     }
 
