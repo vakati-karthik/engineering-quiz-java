@@ -11,6 +11,8 @@ import java.util.List;
  *          <<Request>>
  *     }],
  * }
+ *
+ * Add whatever you feel is missing.
  * */
 public class Bin {
 

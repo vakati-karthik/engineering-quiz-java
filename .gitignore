@@ -3,4 +3,5 @@
 ./minesweeper/.idea
 ./ticketer/.idea
 ./requestbin/.idea
-./requestbin/build
+./requestbin/build/**
+./requestbin/requestbin.iml
