@@ -1,7 +1,6 @@
 package com.revinate.requestbin.bin.model;
 
 import org.apache.commons.lang3.NotImplementedException;
-
 import java.util.Collection;
 
 /**
@@ -22,6 +21,10 @@ public class Bin {
     }
 
     public Collection<Request> getRequests() {
+        throw new NotImplementedException("To be implemented");
+    }
+
+    public void addRequest(Request request) {
         throw new NotImplementedException("To be implemented");
     }
 }
