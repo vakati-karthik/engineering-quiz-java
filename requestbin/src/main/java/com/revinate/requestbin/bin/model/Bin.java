@@ -1,7 +1,8 @@
 package com.revinate.requestbin.bin.model;
 
 import org.apache.commons.lang3.NotImplementedException;
-import java.util.List;
+
+import java.util.Collection;
 
 /**
  * Skeleton class for the Bin entity.
@@ -20,7 +21,7 @@ public class Bin {
         throw new NotImplementedException("To be implemented");
     }
 
-    public List<Request> getRequests() {
+    public Collection<Request> getRequests() {
         throw new NotImplementedException("To be implemented");
     }
 }

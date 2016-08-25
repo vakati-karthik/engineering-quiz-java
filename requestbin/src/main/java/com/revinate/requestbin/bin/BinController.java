@@ -1,13 +1,14 @@
 package com.revinate.requestbin.bin;
 
 import com.revinate.requestbin.bin.model.Bin;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang3.NotImplementedException;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import javax.websocket.server.PathParam;
-import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 
 
 /**
@@ -22,7 +23,7 @@ public class BinController {
      * @return the list of all Bins available on the server.
      */
     @RequestMapping(method = RequestMethod.GET)
-    public List<Bin> getAll() {
+    public Collection<Bin> getAll() {
         throw new NotImplementedException("To be implemented");
     }
 
@@ -39,8 +40,8 @@ public class BinController {
      * @param id of the Bin
      * @return the description of the Bin with all Requests having been made against it.
      */
-    @RequestMapping(value = "/bin/{id}/inspect", method= RequestMethod.GET)
-    public Bin inspect(String id) {
+    @RequestMapping(value = "/{id}/inspect", method= RequestMethod.GET)
+    public Bin inspect(@PathVariable("id") String id) {
         throw new NotImplementedException("To be implemented");
     }
 
@@ -50,8 +51,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.GET)
-    public void get(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public void get(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 
@@ -60,8 +61,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.HEAD)
-    public void head(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.HEAD)
+    public void head(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 
@@ -71,8 +72,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.OPTIONS)
-    public void options(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.OPTIONS)
+    public void options(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 
@@ -81,8 +82,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.PUT)
-    public void put(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void put(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 
@@ -92,8 +93,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.PATCH)
-    public void patch(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
+    public void patch(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 
@@ -102,8 +103,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.POST)
-    public void post(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public void post(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 
@@ -112,8 +113,8 @@ public class BinController {
      * @param id of the Bin
      * @param req Raw HTTP request
      */
-    @RequestMapping(value = "/bin/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathParam("id") String id, HttpServletRequest req){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") String id, HttpServletRequest req){
         throw new NotImplementedException("To be implemented");
     }
 }
