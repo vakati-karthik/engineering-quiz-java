@@ -34,8 +34,8 @@ public class BinControllerTest {
 
     @Test(expected = NotImplementedException.class)
     public void getAllBin() throws Exception {
-        controller.create();
-        controller.create();
+        create();
+        create();
 
         mockMvc.perform(get("/bin"))
             .andExpect(status().isOk())
@@ -62,6 +62,10 @@ public class BinControllerTest {
         mockMvc.perform(delete("/bin/" + bin.getId())).andExpect(status().isOk());
         mockMvc.perform(get("/bin/" + bin.getId() + "/inspect"))
             .andExpect(jsonPath("$.requests", hasSize(7)));
+    }
+
+    private void create() {
+        // create a bin using mockMvc
     }
 
 }
