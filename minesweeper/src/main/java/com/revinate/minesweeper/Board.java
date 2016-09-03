@@ -1,5 +1,8 @@
 package com.revinate.minesweeper;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Board {
 
     /**
@@ -9,7 +12,33 @@ public class Board {
      * <p>
      * Example: 2,2 4,3 6,4
      */
+
+    int m = 30;//number of rows on board
+    int n = 30;//number of columns on board
+    boolean[][] revealMatrix = new boolean[m][n];
+    int[][] mineMatrix = new int[m][n];
+
     public Board(String coordinates) {
+        if (!coordinates.equals("")) {
+            /*
+            * If the user passes a String that doesn't match the described pattern, it just does nothing.
+            * Since this constructor already checks for null string (in which case it does nothing),
+            * the pattern should consist of atleast one pair of coordinates
+            */
+            String pattern = "(\\d{1,2},\\d{1,2} )*(\\d{1,2},\\d{1,2})";
+            Pattern r = Pattern.compile(pattern);
+            Matcher matcher = r.matcher(coordinates);
+            if (matcher.find()) {
+                String[] pairs = coordinates.split(" ");
+                for (String pair: pairs) {
+                    String[] coords = pair.split(",");
+                    int x = Integer.parseInt(coords[0]);
+                    int y = Integer.parseInt(coords[1]);
+                    if (x >= 0 && x < m && y >=0 && y < n)
+                        mineMatrix[x][y] =  1;
+                }
+            }
+        }
     }
 
     /**
@@ -20,7 +49,9 @@ public class Board {
      * @return false if the point contains a mine
      */
     public boolean reveal(int x, int y) {
-        return false;
+        if (mineMatrix[x][y] == 0)
+            revealMatrix[x][y] = true;
+        return revealMatrix[x][y];
     }
 
     /**
@@ -31,7 +62,7 @@ public class Board {
      * @return true if the point has been revealed
      */
     public boolean isRevealed(int x, int y) {
-        return false;
+        return revealMatrix[x][y];
     }
 
     /**
@@ -42,6 +73,31 @@ public class Board {
      * @return The number of mines in this position or -1 if the position itself is a mine
      */
     public int getNumberOfSurroundingMines(int x, int y) {
-        return 0;
+        if (mineMatrix[x][y] == 1)
+            return -1;
+        int numMines = 0;
+        boolean minusX = (x-1 >= 0);
+        boolean plusX = (x+1 <= m);
+        boolean minusY = (y-1 >= 0);
+        boolean plusY = (y+1 <= n);
+        if (minusX) {
+            if (minusY)
+                numMines += mineMatrix[x-1][y-1];
+            numMines += mineMatrix[x-1][y];
+            if (plusY)
+                numMines += mineMatrix[x-1][y+1];
+        }
+        if (plusX) {
+            if (minusY)
+                numMines += mineMatrix[x+1][y-1];
+            numMines += mineMatrix[x+1][y];
+            if (plusY)
+                numMines += mineMatrix[x+1][y+1];
+        }
+        if (minusY)
+            numMines += mineMatrix[x][y-1];
+        if (plusY)
+            numMines += mineMatrix[x][y+1];
+        return numMines;
     }
 }
