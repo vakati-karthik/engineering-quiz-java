@@ -5,6 +5,11 @@ import java.util.regex.Pattern;
 
 public class Board {
 
+    int m = 30;//number of rows on board
+    int n = 30;//number of columns on board
+    boolean[][] revealMatrix = new boolean[m][n];
+    int[][] mineMatrix = new int[m][n];
+
     /**
      * Creates a game board with a input with the following format
      * <p>
@@ -12,33 +17,8 @@ public class Board {
      * <p>
      * Example: 2,2 4,3 6,4
      */
-
-    int m = 30;//number of rows on board
-    int n = 30;//number of columns on board
-    boolean[][] revealMatrix = new boolean[m][n];
-    int[][] mineMatrix = new int[m][n];
-
     public Board(String coordinates) {
-        if (!coordinates.equals("")) {
-            /*
-            * If the user passes a String that doesn't match the described pattern, it just does nothing.
-            * Since this constructor already checks for null string (in which case it does nothing),
-            * the pattern should consist of atleast one pair of coordinates
-            */
-            String pattern = "(\\d{1,2},\\d{1,2} )*(\\d{1,2},\\d{1,2})";
-            Pattern r = Pattern.compile(pattern);
-            Matcher matcher = r.matcher(coordinates);
-            if (matcher.find()) {
-                String[] pairs = coordinates.split(" ");
-                for (String pair: pairs) {
-                    String[] coords = pair.split(",");
-                    int x = Integer.parseInt(coords[0]);
-                    int y = Integer.parseInt(coords[1]);
-                    if (x >= 0 && x < m && y >=0 && y < n)
-                        mineMatrix[x][y] =  1;
-                }
-            }
-        }
+        initialize(coordinates);
     }
 
     /**
@@ -99,5 +79,38 @@ public class Board {
         if (plusY)
             numMines += mineMatrix[x][y+1];
         return numMines;
+    }
+
+    private final void initialize(String coordinates) {
+        boolean isValidString = checkForValidString(coordinates);
+        if (isValidString) {
+            String[] pairs = coordinates.split(" ");
+            for (String pair: pairs) {
+                String[] coords = pair.split(",");
+                int x = Integer.parseInt(coords[0]);
+                int y = Integer.parseInt(coords[1]);
+                if (x >= 0 && x < m && y >=0 && y < n)
+                mineMatrix[x][y] =  1;
+            }
+        }
+    }
+
+    private boolean checkForValidString(String coordinates) {
+        if (!coordinates.equals("")){
+            /*
+            * If the user passes a String that doesn't match the described pattern, it just does nothing.
+            * Since this constructor already checks for null string (in which case it does nothing),
+            * the pattern should consist of atleast one pair of coordinates
+            * The pattern is as follows
+            * one or more pairs of coordinates followed by space followed by one pair of coordinates again i.e.,
+            * one or more occurances of (1 or 2 digits followed by comma followed by 1 or 2 digits followed by space)
+            * followed by (1 or 2 digits followed by comma followed by 1 or 2 digits)
+            */
+            String pattern = "(\\d{1,2},\\d{1,2} )*(\\d{1,2},\\d{1,2})";
+            Pattern r = Pattern.compile(pattern);
+            Matcher matcher = r.matcher(coordinates);
+            return matcher.find();
+        }
+        return false;
     }
 }
