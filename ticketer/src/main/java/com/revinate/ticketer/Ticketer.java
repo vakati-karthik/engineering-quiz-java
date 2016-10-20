@@ -2,8 +2,15 @@ package com.revinate.ticketer;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+import java.util.SortedSet;
+import java.util.HashSet;
 
 public class Ticketer {
+
+    Set<String> tickets;
+    //int setStartIndex = 1;
 
     /**
      * Create a new ticketer by setting the initial amount of available tickets.
@@ -12,6 +19,9 @@ public class Ticketer {
      * @param initialAmountOfTickets Number of tickets this ticketer will contain initially
      */
     public Ticketer(int initialAmountOfTickets) {
+            tickets = new HashSet<String>();
+        for (int i = 1; i <= initialAmountOfTickets; i++)
+            tickets.add(String.valueOf(i));
     }
 
     /**
@@ -24,6 +34,21 @@ public class Ticketer {
      * @param numberOfTickets The number of tickets to buy
      * @return The purchased tickets
      */
-    public Set<String> buy(int numberOfTickets) {
+    public synchronized Set<String> buy(int numberOfTickets) {
+        if (tickets.size() == 0) return Collections.emptySet();
+        Set<String> result = new LinkedHashSet<String>();
+        if (numberOfTickets >= tickets.size()) {
+            result.addAll(tickets);
+            tickets.clear();
+        }
+        else {
+            for (String s : tickets) {
+                if (0 == numberOfTickets) break;
+                result.add(s);
+                --numberOfTickets;
+            }
+        }
+        tickets.removeAll(result);
+        return result;
     }
 }
